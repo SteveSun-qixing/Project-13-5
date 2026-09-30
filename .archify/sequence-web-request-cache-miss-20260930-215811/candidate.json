@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Web 请求缓存未命中回源流程",
+    "locale": "zh-CN",
+    "output": ".archify/sequence-web-request-cache-miss-20260930-215811/web-request-cache-miss.html",
+    "viewBox": [900, 540],
+    "column_fit": "spread",
+    "quality_profile": "showcase"
+  },
+  "participants": [
+    { "id": "browser", "type": "frontend", "label": "浏览器", "sublabel": "发起页面请求" },
+    { "id": "api", "type": "backend", "label": "API 服务", "sublabel": "服务端入口" },
+    { "id": "redis", "type": "database", "label": "Redis", "sublabel": "缓存层" },
+    { "id": "pg", "type": "database", "label": "PostgreSQL", "sublabel": "主数据源" }
+  ],
+  "segments": [
+    { "from": 156, "to": 246, "label": "缓存查询" },
+    { "from": 258, "to": 312, "label": "数据库回源" },
+    { "from": 326, "to": 386, "label": "回填与响应" }
+  ],
+  "messages": [
+    {
+      "id": "request",
+      "from": "browser",
+      "to": "api",
+      "y": 168,
+      "label": "GET /api/items",
+      "variant": "emphasis"
+    },
+    {
+      "id": "cacheRead",
+      "from": "api",
+      "to": "redis",
+      "y": 200,
+      "label": "GET items:42",
+      "variant": "default"
+    },
+    {
+      "id": "cacheMiss",
+      "from": "redis",
+      "to": "api",
+      "y": 232,
+      "label": "miss 未命中",
+      "variant": "return",
+      "note": "命中则直接返回，不查询数据库"
+    },
+    {
+      "id": "dbQuery",
+      "from": "api",
+      "to": "pg",
+      "y": 268,
+      "label": "SELECT items",
+      "variant": "emphasis"
+    },
+    {
+      "id": "dbRows",
+      "from": "pg",
+      "to": "api",
+      "y": 300,
+      "label": "rows 结果集",
+      "variant": "return"
+    },
+    {
+      "id": "cacheFill",
+      "from": "api",
+      "to": "redis",
+      "y": 336,
+      "label": "SET items:42 + TTL",
+      "variant": "dashed"
+    },
+    {
+      "id": "response",
+      "from": "api",
+      "to": "browser",
+      "y": 374,
+      "label": "200 JSON",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    { "participant": "browser", "from": 158, "to": 390 },
+    { "participant": "api", "from": 162, "to": 382 },
+    { "participant": "redis", "from": 193, "to": 242 },
+    { "participant": "redis", "from": 329, "to": 348 },
+    { "participant": "pg", "from": 261, "to": 308 }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "请求入口",
+      "items": [
+        "浏览器发起 GET /api/items，API 服务统一接收",
+        "API 先向 Redis 读取对应缓存键"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "缓存未命中",
+      "items": [
+        "Redis 返回 miss，只有此时才回源查询 PostgreSQL",
+        "缓存命中时不访问数据库，直接构造响应"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "回填与响应",
+      "items": [
+        "查询结果写回 Redis 并设置 TTL，后续请求命中缓存",
+        "API 以 200 JSON 响应浏览器"
+      ]
+    }
+  ]
+}

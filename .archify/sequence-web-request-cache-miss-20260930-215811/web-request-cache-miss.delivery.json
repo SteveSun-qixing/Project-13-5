@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "ff0f1ef4-ab1f-4ed2-a941-a7ea59f67abd",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/sequence-web-request-cache-miss-20260930-215811/candidate.json",
+  "output": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/sequence-web-request-cache-miss-20260930-215811/web-request-cache-miss.html",
+  "specification": {
+    "sha256": "96d216ff3eda7474a82dd6273b95fc9f80599d845175b3b7bd04ff7679f3ae1b",
+    "bytes": 3057
+  },
+  "artifact": {
+    "sha256": "fcb2d6bbba942b7971c43a0656d8b206f43fcc96fe79411529c8932b07ec57bc",
+    "bytes": 753227
+  }
+}
