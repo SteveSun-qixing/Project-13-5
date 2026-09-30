@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "薯片（Chips）生态 · 运行时架构总览",
+    "locale": "zh-CN",
+    "output": "chips-ecosystem.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/SteveSun-qixing/Project-13-5.git",
+      "revision": "607f2131d6843e367f0aa02bb983c35f55f3277c",
+      "provider": "github"
+    }
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "用户",
+      "sublabel": "桌面 / 移动客户端",
+      "icon": "person",
+      "pos": [690, 10],
+      "size": [180, 52]
+    },
+    {
+      "id": "plugin-app",
+      "type": "frontend",
+      "label": "应用插件 app",
+      "sublabel": "编辑引擎 · 查看器 · 办公 · 社区",
+      "icon": "frontend",
+      "pos": [690, 120],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-Notes/manifest.yaml", "line": 4, "label": "type: app" },
+        { "path": "Chips-CommunityClient/manifest.yaml", "line": 4, "label": "type: app" }
+      ]
+    },
+    {
+      "id": "plugin-card",
+      "type": "frontend",
+      "label": "基础卡片插件 card",
+      "sublabel": "图片 · 富文本 · 音乐 · 书",
+      "icon": "frontend",
+      "pos": [30, 120],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-BaseCardPlugin/image-BCP/manifest.yaml", "line": 4, "label": "type: card" }
+      ]
+    },
+    {
+      "id": "plugin-layout",
+      "type": "frontend",
+      "label": "布局插件 layout",
+      "sublabel": "网格 · 时间线 · 瀑布流",
+      "icon": "frontend",
+      "pos": [250, 120],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-BoxLayoutPlugin/grid-BLP/manifest.yaml", "line": 4, "label": "type: layout" }
+      ]
+    },
+    {
+      "id": "plugin-module",
+      "type": "backend",
+      "label": "能力模块 module",
+      "sublabel": "封面 · 转 PDF · 上传",
+      "icon": "backend",
+      "pos": [470, 120],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-ModulePlugin/Chips-Cover-Plugin/manifest.yaml", "line": 4, "label": "type: module" }
+      ]
+    },
+    {
+      "id": "sdk",
+      "type": "frontend",
+      "label": "chips-sdk",
+      "sublabel": "createClient · 类型 · 脚手架",
+      "icon": "frontend",
+      "pos": [690, 260],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-SDK/src/core/client.ts", "line": 219, "label": "createClient" },
+        { "path": "Chips-SDK/src/core/bridge-adapter.ts", "line": 49, "end_line": 57, "label": "window.chips 适配" }
+      ]
+    },
+    {
+      "id": "preload-bridge",
+      "type": "frontend",
+      "label": "Preload Bridge",
+      "sublabel": "window.chips.*",
+      "icon": "frontend",
+      "pos": [690, 380],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-Host/src/preload/create-bridge.ts", "line": 371, "end_line": 372, "label": "exposeInMainWorld" },
+        { "path": "Chips-Host/src/preload/create-bridge.ts", "line": 90, "end_line": 115, "label": "ACTION_CHANNEL_MAP" }
+      ]
+    },
+    {
+      "id": "ipc",
+      "type": "backend",
+      "label": "IPC 传输",
+      "sublabel": "chips:invoke · 子通道",
+      "icon": "backend",
+      "pos": [690, 500],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-Host/src/main/ipc/chips-ipc.ts", "line": 7, "end_line": 15, "label": "通道常量" },
+        { "path": "Chips-Host/src/main/ipc/chips-ipc.ts", "line": 260, "end_line": 276, "label": "ipcMain.handle" }
+      ]
+    },
+    {
+      "id": "kernel",
+      "type": "backend",
+      "label": "内核路由 Kernel",
+      "sublabel": "router · registry · event · lifecycle",
+      "icon": "backend",
+      "pos": [690, 620],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-Host/packages/kernel/src/kernel.ts", "line": 10, "end_line": 23, "label": "Kernel 组成" },
+        { "path": "Chips-Host/packages/kernel/src/router.ts", "line": 44, "end_line": 58, "label": "invoke 校验链" }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "backend",
+      "label": "Host 服务域",
+      "sublabel": "file · card · box · plugin · module · window …",
+      "icon": "backend",
+      "pos": [670, 740],
+      "size": [220, 130],
+      "sources": [
+        { "path": "Chips-Host/src/main/services/register-host-services.ts", "line": 3819, "end_line": 3830, "label": "createServices" },
+        { "path": "Chips-Host/src/main/services/register-host-services.ts", "line": 7300, "end_line": 7301, "label": "card 服务域" },
+        { "path": "Chips-Host/src/main/services/register-host-services.ts", "line": 7774, "end_line": 7775, "label": "box 服务域" }
+      ]
+    },
+    {
+      "id": "pal",
+      "type": "backend",
+      "label": "PAL 平台抽象层",
+      "sublabel": "Desktop / Headless / Node",
+      "icon": "backend",
+      "pos": [690, 920],
+      "size": [180, 66],
+      "sources": [
+        { "path": "Chips-Host/packages/pal/src/index.ts", "line": 1, "end_line": 2, "label": "PALAdapter 导出" },
+        { "path": "Chips-Host/packages/pal/src/node-adapter.ts", "line": 3125, "label": "DesktopPalAdapter" },
+        { "path": "Chips-Host/packages/pal/src/node-adapter.ts", "line": 458, "label": "创建 BrowserWindow" }
+      ]
+    },
+    {
+      "id": "os",
+      "type": "external",
+      "label": "Electron / 操作系统",
+      "sublabel": "窗口 · 文件 · 屏幕",
+      "icon": "external",
+      "pos": [690, 1040],
+      "size": [180, 56]
+    },
+    {
+      "id": "plugin-runtime",
+      "type": "backend",
+      "label": "插件运行时",
+      "sublabel": "清单校验 · 会话 · 权限 · 配额",
+      "icon": "backend",
+      "pos": [990, 765],
+      "size": [190, 80],
+      "sources": [
+        { "path": "Chips-Host/src/runtime/plugin-runtime.ts", "line": 511, "label": "PluginRuntime" },
+        { "path": "Chips-Host/src/runtime/plugin-runtime.ts", "line": 10, "end_line": 11, "label": "插件类型 app/card/layout/module/theme" }
+      ]
+    },
+    {
+      "id": "servers",
+      "type": "cloud",
+      "label": "服务器侧",
+      "sublabel": "个人服务器 / 社区平台服务器（Fastify）",
+      "icon": "cloud",
+      "pos": [880, 1150],
+      "size": [250, 90],
+      "sources": [
+        { "path": "Chips-PersonalServer/packages/server/package.json", "line": 25, "label": "fastify 依赖" },
+        { "path": "Chips-CommunityPlatformServer/packages/server/package.json", "line": 25, "label": "fastify 依赖" },
+        { "path": "Chips-PersonalServer/技术文档/01-架构与边界.md", "line": 9, "end_line": 18, "label": "运行形态" }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "插件生态（独立仓库 · 独立软件产品）",
+      "wraps": ["plugin-card", "plugin-layout", "plugin-module", "plugin-app"],
+      "pad": 26
+    },
+    {
+      "kind": "region",
+      "label": "薯片 Host 运行时（唯一运行时承载）",
+      "wraps": ["preload-bridge", "ipc", "kernel", "services", "pal", "plugin-runtime"],
+      "pad": 26
+    }
+  ],
+  "connections": [
+    { "id": "user-to-app", "from": "user", "to": "plugin-app", "label": "启动", "variant": "emphasis", "fromSide": "bottom", "toSide": "top" },
+    { "id": "app-to-sdk", "from": "plugin-app", "to": "sdk", "label": "能力调用", "fromSide": "bottom", "toSide": "top" },
+    { "id": "sdk-to-bridge", "from": "sdk", "to": "preload-bridge", "label": "window.chips.invoke", "fromSide": "bottom", "toSide": "top" },
+    { "id": "bridge-to-ipc", "from": "preload-bridge", "to": "ipc", "label": "chips:invoke", "fromSide": "bottom", "toSide": "top" },
+    { "id": "ipc-to-kernel", "from": "ipc", "to": "kernel", "label": "kernel.invoke", "fromSide": "bottom", "toSide": "top" },
+    { "id": "kernel-to-services", "from": "kernel", "to": "services", "label": "schema · 权限 · 超时", "fromSide": "bottom", "toSide": "top" },
+    { "id": "services-to-pal", "from": "services", "to": "pal", "label": "原生能力", "fromSide": "bottom", "toSide": "top" },
+    { "id": "pal-to-os", "from": "pal", "to": "os", "label": "窗口 · 文件 · 屏幕", "fromSide": "bottom", "toSide": "top" },
+    { "id": "services-to-runtime", "from": "services", "to": "plugin-runtime", "label": "插件治理", "fromSide": "right", "toSide": "left" },
+    { "id": "runtime-to-app", "from": "plugin-runtime", "to": "plugin-app", "label": "加载 · 会话", "fromSide": "top", "toSide": "top", "via": [[1085, 96], [780, 96]] },
+    { "id": "services-to-card", "from": "services", "to": "plugin-card", "label": "渲染卡片", "fromSide": "left", "toSide": "bottom", "via": [[120, 840], [120, 186]] },
+    { "id": "services-to-layout", "from": "services", "to": "plugin-layout", "label": "渲染布局", "fromSide": "left", "toSide": "bottom", "via": [[340, 805], [340, 186]] },
+    { "id": "services-to-module", "from": "services", "to": "plugin-module", "label": "调用模块", "fromSide": "left", "toSide": "bottom", "via": [[560, 770], [560, 186]] },
+    { "id": "app-to-servers", "from": "plugin-app", "to": "servers", "label": "社区 REST API", "fromSide": "right", "toSide": "top", "via": [[945, 153], [945, 1150]] },
+    { "id": "module-to-servers", "from": "plugin-module", "to": "servers", "label": "上传渲染产物", "fromSide": "bottom", "toSide": "top", "via": [[620, 210], [915, 210], [915, 1150]] }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "插件生态",
+      "items": [
+        "插件类型：app / card / layout / module（theme 为 Host 内部保留，不再对外开放）",
+        "插件以独立仓库、独立软件产品形态发布，可单独成为应用入口",
+        "插件只能经 window.chips.* 访问系统能力，禁止直连平台 API"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Host 运行时",
+      "items": [
+        "内核路由以 namespace.action 统一分发，调用即做 schema 校验、权限判定与超时/熔断/重放防护",
+        "服务域覆盖 file · resource · config · window · plugin · module · card · box · zip · serializer · control-plane 等",
+        "插件运行时负责清单校验、插件会话握手、权限与消息配额；窗口经 PAL 创建"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "共享开发层",
+      "items": [
+        "chips-sdk 只提供类型化封装、脚手架与测试辅助，不承载 Host 运行时主实现",
+        "@chips/ui 与 antd 统一视觉（appleTheme + global.css），界面文案简体中文直写"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "服务器侧",
+      "items": [
+        "社区平台服务器与个人服务器均基于 Fastify + PostgreSQL（drizzle-orm）+ S3/MinIO",
+        "社区 Web 前端为 Vite SPA，浏览器直接加载渲染产物",
+        "客户端经 module.invoke 调用 community.card.transfer 上传与下载卡片"
+      ]
+    }
+  ]
+}

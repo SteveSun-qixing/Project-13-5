@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/candidate.json",
+    "sha256": "31fb78140180dc716117a108f812b1a8475fbd906cd8db32c0b09448512b6d63",
+    "bytes": 11030
+  },
+  "artifact": {
+    "path": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/chips-ecosystem.html"
+  },
+  "gates": {
+    "validate": "fail",
+    "deliver": "not-run",
+    "check": "not-run",
+    "browser-check": "not-run"
+  },
+  "failedStage": "validate",
+  "diagnostics": [
+    {
+      "code": "clean-flow/endpoint-side-direction",
+      "severity": "error",
+      "message": "[clean-flow/endpoint-side-direction] architecture connections[10] id \"services-to-card\" \"services\" -> \"plugin-card\" first segment 0 [670, 805] -> [120, 840] does not honor fromSide \"left\" — it must run horizontal leftward; keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 10,
+        "id": "services-to-card",
+        "from": "services",
+        "to": "plugin-card"
+      },
+      "evidence": {
+        "endpoint": "source",
+        "authoredField": "fromSide",
+        "sideOrigin": "authored",
+        "side": "left",
+        "segmentIndex": 0,
+        "from": [
+          670,
+          805
+        ],
+        "to": [
+          120,
+          840
+        ],
+        "expectedAxis": "horizontal",
+        "expectedDirection": "leftward"
+      },
+      "supportedFixes": [
+        "keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments"
+      ]
+    },
+    {
+      "code": "composition/proper-crossing",
+      "severity": "error",
+      "message": "[composition/proper-crossing] showcase architecture connections[1] id \"app-to-sdk\" \"plugin-app\" -> \"sdk\" crosses connections[14] id \"module-to-servers\" \"plugin-module\" -> \"servers\" at [780, 210] (segments 0 and 1) — if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust route/via or fromSide/toSide so the connections use separate corridors.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 1,
+        "id": "app-to-sdk",
+        "from": "plugin-app",
+        "to": "sdk"
+      },
+      "evidence": {
+        "otherRelationship": {
+          "diagramType": "architecture",
+          "collection": "connections",
+          "index": 14,
+          "id": "module-to-servers",
+          "from": "plugin-module",
+          "to": "servers"
+        },
+        "point": [
+          780,
+          210
+        ],
+        "segmentIndex": 0,
+        "otherSegmentIndex": 1
+      },
+      "supportedFixes": [
+        "if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust route/via or fromSide/toSide so the connections use separate corridors"
+      ]
+    },
+    {
+      "code": "composition/label-route-clearance",
+      "severity": "error",
+      "message": "[composition/label-route-clearance] showcase architecture label \"插件治理\" on connections[8] id \"services-to-runtime\" \"services\" -> \"plugin-runtime\" label \"插件治理\" is 0px from connections[13] id \"app-to-servers\" \"plugin-app\" -> \"servers\" label \"社区 REST API\" segment 1 [945, 153] -> [945, 1150] (label rect [916, 785, 48, 14]; minimum 4px) — if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust labelAt, labelDx, labelDy, or labelSegment; otherwise adjust the other relationship route/via/channel.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 8,
+        "id": "services-to-runtime",
+        "from": "services",
+        "to": "plugin-runtime"
+      },
+      "evidence": {
+        "label": "插件治理",
+        "otherRelationship": {
+          "diagramType": "architecture",
+          "collection": "connections",
+          "index": 13,
+          "id": "app-to-servers",
+          "from": "plugin-app",
+          "to": "servers"
+        },
+        "segmentIndex": 1,
+        "clearancePx": 0,
+        "minimumPx": 4,
+        "labelRect": {
+          "relation": {
+            "id": "services-to-runtime",
+            "from": "services",
+            "to": "plugin-runtime",
+            "label": "插件治理",
+            "fromSide": "right",
+            "toSide": "left"
+          },
+          "relationIndex": 8,
+          "label": "插件治理",
+          "x": 915.8,
+          "y": 785,
+          "width": 48.4,
+          "height": 14,
+          "lx": 940,
+          "ly": 795
+        },
+        "from": [
+          945,
+          153
+        ],
+        "to": [
+          945,
+          1150
+        ]
+      },
+      "supportedFixes": [
+        "if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust labelAt, labelDx, labelDy, or labelSegment; otherwise adjust the other relationship route/via/channel"
+      ]
+    },
+    {
+      "code": "clean-flow/endpoint-side-direction",
+      "severity": "error",
+      "message": "[clean-flow/endpoint-side-direction] architecture connections[12] id \"services-to-module\" \"services\" -> \"plugin-module\" first segment 0 [670, 805] -> [560, 770] does not honor fromSide \"left\" — it must run horizontal leftward; keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 12,
+        "id": "services-to-module",
+        "from": "services",
+        "to": "plugin-module"
+      },
+      "evidence": {
+        "endpoint": "source",
+        "authoredField": "fromSide",
+        "sideOrigin": "authored",
+        "side": "left",
+        "segmentIndex": 0,
+        "from": [
+          670,
+          805
+        ],
+        "to": [
+          560,
+          770
+        ],
+        "expectedAxis": "horizontal",
+        "expectedDirection": "leftward"
+      },
+      "supportedFixes": [
+        "keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments"
+      ]
+    },
+    {
+      "code": "clean-flow/endpoint-side-direction",
+      "severity": "error",
+      "message": "[clean-flow/endpoint-side-direction] architecture connections[13] id \"app-to-servers\" \"plugin-app\" -> \"servers\" final segment 2 [945, 1150] -> [1005, 1150] does not honor toSide \"top\" — it must run vertical downward from above; keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 13,
+        "id": "app-to-servers",
+        "from": "plugin-app",
+        "to": "servers"
+      },
+      "evidence": {
+        "endpoint": "target",
+        "authoredField": "toSide",
+        "sideOrigin": "authored",
+        "side": "top",
+        "segmentIndex": 2,
+        "from": [
+          945,
+          1150
+        ],
+        "to": [
+          1005,
+          1150
+        ],
+        "expectedAxis": "vertical",
+        "expectedDirection": "downward from above"
+      },
+      "supportedFixes": [
+        "keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments"
+      ]
+    },
+    {
+      "code": "clean-flow/endpoint-side-direction",
+      "severity": "error",
+      "message": "[clean-flow/endpoint-side-direction] architecture connections[14] id \"module-to-servers\" \"plugin-module\" -> \"servers\" first segment 0 [560, 186] -> [620, 210] does not honor fromSide \"bottom\" — it must run vertical downward; keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 14,
+        "id": "module-to-servers",
+        "from": "plugin-module",
+        "to": "servers"
+      },
+      "evidence": {
+        "endpoint": "source",
+        "authoredField": "fromSide",
+        "sideOrigin": "authored",
+        "side": "bottom",
+        "segmentIndex": 0,
+        "from": [
+          560,
+          186
+        ],
+        "to": [
+          620,
+          210
+        ],
+        "expectedAxis": "vertical",
+        "expectedDirection": "downward"
+      },
+      "supportedFixes": [
+        "keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments"
+      ]
+    },
+    {
+      "code": "composition/proper-crossing",
+      "severity": "error",
+      "message": "[composition/proper-crossing] showcase architecture connections[8] id \"services-to-runtime\" \"services\" -> \"plugin-runtime\" crosses connections[13] id \"app-to-servers\" \"plugin-app\" -> \"servers\" at [945, 805] (segments 0 and 1) — if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust route/via or fromSide/toSide so the connections use separate corridors.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 8,
+        "id": "services-to-runtime",
+        "from": "services",
+        "to": "plugin-runtime"
+      },
+      "evidence": {
+        "otherRelationship": {
+          "diagramType": "architecture",
+          "collection": "connections",
+          "index": 13,
+          "id": "app-to-servers",
+          "from": "plugin-app",
+          "to": "servers"
+        },
+        "point": [
+          945,
+          805
+        ],
+        "segmentIndex": 0,
+        "otherSegmentIndex": 1
+      },
+      "supportedFixes": [
+        "if the authored fromSide/toSide/via are not required by the user, remove them so the renderer can re-plan; otherwise preserve that intent and adjust route/via or fromSide/toSide so the connections use separate corridors"
+      ]
+    },
+    {
+      "code": "clean-flow/endpoint-side-direction",
+      "severity": "error",
+      "message": "[clean-flow/endpoint-side-direction] architecture connections[14] id \"module-to-servers\" \"plugin-module\" -> \"servers\" final segment 3 [915, 1150] -> [1005, 1150] does not honor toSide \"top\" — it must run vertical downward from above; keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments.",
+      "subject": {
+        "diagramType": "architecture",
+        "collection": "connections",
+        "index": 14,
+        "id": "module-to-servers",
+        "from": "plugin-module",
+        "to": "servers"
+      },
+      "evidence": {
+        "endpoint": "target",
+        "authoredField": "toSide",
+        "sideOrigin": "authored",
+        "side": "top",
+        "segmentIndex": 3,
+        "from": [
+          915,
+          1150
+        ],
+        "to": [
+          1005,
+          1150
+        ],
+        "expectedAxis": "vertical",
+        "expectedDirection": "downward from above"
+      },
+      "supportedFixes": [
+        "keep automatic routing so the renderer can use a side-aware bridge, or set truthful fromSide/toSide with perpendicular via segments"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 10,
+    "shown": 8,
+    "truncated": true
+  },
+  "evidence": {
+    "receipt": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/chips-ecosystem.finalize.json",
+    "summaryReceipt": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/chips-ecosystem.finalize-summary.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-09-30T14:03:42.099Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 426,
+  "nextAction": {
+    "action": "edit-in-place",
+    "candidate": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/candidate.json",
+    "constraint": "Preserve all semantics and user-fixed geometry. Use references/architecture-layout-repair.md to choose a local repair or connected-scene reflow; edit the existing candidate.",
+    "then": "finalize-once"
+  }
+}

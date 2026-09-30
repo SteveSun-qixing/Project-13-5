@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "command": "deliver",
+  "status": "pending",
+  "receiptId": "39d4db51-0516-47b9-9f7c-ac6b5d006591",
+  "input": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/candidate.json",
+  "output": "/Users/sevenstars/Documents/ChipsCard/Develop/Project-13-5-1/.archify/architecture-chips-ecosystem-20260930-223032/chips-ecosystem.html"
+}
